@@ -14,12 +14,13 @@ struct DevCfg{
   uint16_t lightThreshold; // [180]
   uint8_t enableLineBot;
   uint8_t enableM2M;
-  int8_t reverse[14];
+  uint16_t serverPort;
+  int8_t reverse[12];
   
   char devName[16];   // WenhaoIoT
   char devPasswd[16]; // 11111111
   char serverIP[24];  // 192.168.123.234:1880
-  char ssid[24];      // Wenhao
+  char ssid[24];      // UnoPlugAp
   char ssidPasswd[24]; // 11111111 TBD: 64-->32
   char lineToken[128];
 };

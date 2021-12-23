@@ -1,7 +1,7 @@
 #include "networking.h"
 
 int status = WL_IDLE_STATUS;      //connection status
-
+IPAddress my_ip;
 
 String IpAddress2String(const IPAddress& ipAddress)
 {
@@ -69,9 +69,9 @@ void printWifiStatus() {
   Serial.println(WiFi.SSID());
 
   // print your board's IP address:
-  IPAddress ip = WiFi.localIP();
+  my_ip = WiFi.localIP();
   Serial.print("IP Address: ");
-  Serial.println(ip);
+  Serial.println(my_ip);
 
   // print the received signal strength:
   long rssi = WiFi.RSSI();
@@ -80,5 +80,6 @@ void printWifiStatus() {
   Serial.println(" dBm");
 
   Serial.print("To see this page in action, open a browser to http://");
-  Serial.println(ip);
+  Serial.println(my_ip);
 }
+

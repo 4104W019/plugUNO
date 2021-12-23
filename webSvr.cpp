@@ -85,7 +85,7 @@ String powerModePage(int powerMode)
         return msg;
 }
 
-String settingPage(String serverIP, String ssid, String ssid_passwd, String lineToken_,String dark_threshold,String light_threshold)
+String settingPage(String serverIP,String serverPort, String ssid, String ssid_passwd, String lineToken_,String dark_threshold,String light_threshold)
 {
   String msg = headPage();
 
@@ -93,7 +93,7 @@ String settingPage(String serverIP, String ssid, String ssid_passwd, String line
           msg +=    "<form action='settingX' method='post'>";
           msg +=    "<div  style='width:880px;height:50px;font-size:20px'><table border='1'>";
           msg +=    "<tr>Password : <input type='password' name='sysPasswd' value='' /></tr><br>";
-           msg +=    "<tr>serverIP : <input type='text' name='serverIP' value="+serverIP+" /></tr><br>";
+           msg +=    "<tr>serverIP : <input type='text' name='serverIP' value="+serverIP+" /><input type='text' name='serverPort' value="+serverPort+" /></tr><br>";
           msg +=    "<tr>SSID : <input type='text' name='ssid' value="+ssid+" /></tr><br>";
           msg +=    "<tr>SSID PW : <input type='password' name='passwd' value="+ssid_passwd+" /></tr><br>";
           msg +=    "<tr>token : <input type='text' name='token' value="+lineToken_+" /></tr><br>";

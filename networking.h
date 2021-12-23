@@ -4,7 +4,6 @@
 #include "Arduino.h"
 #include <WiFiNINA.h>
 
-
 String getIP();
 String getMAC();
 
