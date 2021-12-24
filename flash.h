@@ -9,7 +9,7 @@ struct DevCfg{
   uint8_t num;  //
   uint8_t refreshTimeval;  // [0] 0:manual, 1:pre 1sec,...,
   uint8_t powerMode;       // [2] 0:Off, 1:On, 2:Auto
-  uint8_t PirSense;        // [3] 0:Off, 1:Hi 2:Middle .... 10:Low 
+  uint8_t pirMode;        // [0] 0:Off, 1:On //1:Hi 2:Middle .... 10:Low 
   uint16_t darkThreshold;  // [110]
   uint16_t lightThreshold; // [180]
   uint8_t enableLineBot;

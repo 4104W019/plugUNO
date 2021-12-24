@@ -1,12 +1,11 @@
 #include "flash.h"
-#define EEPROM_SIZE 512
 
 void dumpCfg(DevCfg cfg)
 {
     Serial.print("num ");Serial.println(cfg.num);
     Serial.print("refreshTimeval ");Serial.println(cfg.refreshTimeval);
     Serial.print("powerMode ");Serial.println(cfg.powerMode);
-    Serial.print("PirSense ");Serial.println(cfg.PirSense);
+    Serial.print("pirMode ");Serial.println(cfg.pirMode);
     Serial.print("darkThreshold ");Serial.println(cfg.darkThreshold);
     Serial.print("lightThreshold ");Serial.println(cfg.lightThreshold);
     Serial.print("enableLineBot ");Serial.println(cfg.enableLineBot);
@@ -21,14 +20,33 @@ void dumpCfg(DevCfg cfg)
     Serial.println("ssidPasswd " +String(cfg.ssidPasswd));
     Serial.println("lineToken " +String(cfg.lineToken));
 }
+
 int initFlash()
 {
-  return 0;//EEPROM.begin(EEPROM_SIZE);
+  return 0;
 }
 
 void writeFlashDefault()
-{
-  DevCfg cfg={1,0,2,3,110,170, 0,0,1880, "","IoT","192.168.123.234","11111111","UnoPlugAP","11111111","1234321"};
+{  
+   DevCfg cfg={
+    /*.num=*/ 1,
+    /*.refreshTimeval=*/0,
+    /*.powerMode=*/2,
+    /*.pirMode=*/1,
+    /*.darkThreshold=*/0,
+    /*.lightThreshold=*/1023,
+    /*.enableLineBot=*/0,
+    /*.enableM2M=*/0,
+    /*.serverPort=*/1880,
+    /*.reverse=*/"",
+    /*.devName=*/"UNO Plug",
+    /*.devPasswd=*/"22222222",
+    /*.serverIP=*/"",
+    /*.ssid=*/"UnoAP",
+    /*.ssidPasswd=*/"11111111",
+    /*.lineToken=*/"NotSupport"
+    };
+
   EEPROM.put(0, cfg);
   
   Serial.println(byte(EEPROM.read(0)));
