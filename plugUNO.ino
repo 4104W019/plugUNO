@@ -5,7 +5,7 @@ void dutyTask()
     if(cfg.powerMode == 2)
     {
       lightSensorVaule = getSensorValue();
-      lightSensorVaule= map(lightSensorVaule,0,1023,0,330);
+      lightSensorVaule= map(lightSensorVaule,0,1023,0,100);
       int dark = cfg.darkThreshold; 
       int light = cfg.lightThreshold;
 
@@ -18,7 +18,7 @@ void dutyTask()
         }
       }
       else{
-        if(checkBtnPressed())
+        if(cfg.pirMode==1 && checkBtnPressed())
         {
            pirTimeout = 10*10;
            setOutputPinLevel(ledPin,HIGH);
@@ -48,14 +48,10 @@ void printWEB() {
     Serial.println("new client");           // print a message out the serial port
 
     String html;
-    bool updateHtml = false;
- /*   
-  String req = client.readStringUntil('\r');
-  Serial.println(F("request: "));
-  Serial.println(req);
-*/
-  String htmlHead="HTTP/1.1 200 OK\r\n"
-  "Content-type:text/html\r\n";
+    enum REST_CMD updateHtml=RestMax;
+
+    String htmlHead="HTTP/1.1 200 OK\r\n"
+    "Content-type:text/html\r\n";
   
     String currentLine = "";                // make a String to hold incoming data from the client
     while (client.connected()) {            // loop while the client's connected
@@ -68,30 +64,19 @@ void printWEB() {
           // that's the end of the client HTTP request, so send a response:
           if (currentLine.length() == 0) {
 
-            // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
-            // and a content-type so the client knows what's coming, then a blank line:
-            //client.println("HTTP/1.1 200 OK");
-            //client.println("Content-type:text/html");
-            //client.println();
-
-             if(updateHtml)
+             if(updateHtml!=RestMax)
                 {
                 //client.print(htmlHead);
                 client.println("HTTP/1.1 200 OK");
                 client.println("Content-type:text/html");
                 client.println();
                 client.print(html);
-                updateHtml = false;
                 client.println();
                 }
-             
-            // The HTTP response ends with another blank line:
-            
-            // break out of the while loop:
+
             break;
           }
           else {      // if you got a newline, then clear currentLine:
-            //Serial.println("=====>" + currentLine);
             currentLine = "";
           }
         }
@@ -100,41 +85,36 @@ void printWEB() {
         }
         if (currentLine.endsWith("GET / HTTP") || currentLine.endsWith("GET /system"))
             {
-            Serial.println("==xxx===>" + currentLine);
-                html =sysInfoPage( getIP(),getMAC(), 123);
-                updateHtml = true;
+                html =sysInfoPage( getIP(),getMAC(), FWVER);
+                updateHtml = RestNA;
              
             }
         else if (currentLine.endsWith("GET /powerMode"))
             {
                 html =powerModePage(cfg.powerMode);
-				sendData(RestMode);
-                updateHtml = true;
+                updateHtml = RestMode;
             }
             else if (currentLine.endsWith("GET /off"))
             {
             	cfg.powerMode=0;
                 html =powerModePage(cfg.powerMode);
-				sendData(RestMode);
-                updateHtml = true;
+                updateHtml = RestMode;
             }
             else if (currentLine.endsWith("GET /on"))
             {
             	cfg.powerMode=1;
                 html =powerModePage(cfg.powerMode);
-				sendData(RestMode);
-                updateHtml = true;
+                updateHtml = RestMode;
             }
             else if (currentLine.endsWith("GET /auto"))
             {
                 cfg.powerMode=2;
                 html =powerModePage(cfg.powerMode);
-				sendData(RestMode);
-                updateHtml = true;
+                updateHtml = RestMode;
             }
         else if (currentLine.endsWith("POST /settingX"))
             {
-                 char *keyVal[8];
+                 char *keyVal[12];
                   
                   String postForm  = client.readString();
 
@@ -182,19 +162,30 @@ void printWEB() {
                         Serial.println("ssid : "+ ssid);
                         }
                         
-                    else if(strncmp(keyVal[i],"passwd",6)==0){
-                        passwd = String(keyVal[i]+6+1);
-                        Serial.println("passwd : "+passwd);
-                    }else if(strncmp(keyVal[i],"token",5)==0){
+                        else if(strncmp(keyVal[i],"passwd",6)==0){
+                            passwd = String(keyVal[i]+6+1);
+                            Serial.println("passwd : "+passwd);
+                        }
+                    else if(strncmp(keyVal[i],"token",5)==0){
                         token = String(keyVal[i]+5+1);
                         Serial.println("token : "+ token);
-                    }else if(strncmp(keyVal[i],"dark",4)==0){
+                    }
+                    else if(strncmp(keyVal[i],"dark",4)==0){
                         dark = String(keyVal[i]+4+1);
                         Serial.println("dark : "+ dark);
-                    }else if(strncmp(keyVal[i],"light",5)==0){
+                    }
+                    else if(strncmp(keyVal[i],"light",5)==0){
                         light = String(keyVal[i]+5+1);
                         Serial.println("light : "+ light);
-                        }
+                    }
+                    else if(strncmp(keyVal[i],"pirMode",7)==0){
+                        cfg.pirMode = String(keyVal[i]+7+1).toInt();
+                        Serial.println("pirMode : "+ String(cfg.pirMode));
+                    }
+                    else if(strncmp(keyVal[i],"enableM2M",9)==0){
+                        cfg.enableM2M = String(keyVal[i]+9+1).toInt();
+                        Serial.println("enableM2M : "+ String(cfg.enableM2M));
+                    }
                   }
 
                   if(sysPasswd==String(cfg.devPasswd) || sysPasswd==String("11111111")){
@@ -202,7 +193,9 @@ void printWEB() {
                             ,passwd
                             ,token
                             ,dark
-                            ,light);
+                            ,light,
+                            cfg.pirMode,
+                            cfg.enableM2M);
                     serverIP.toCharArray(cfg.serverIP  ,24);
                     ssid.toCharArray(cfg.ssid  ,24);
                     passwd.toCharArray(cfg.ssidPasswd  ,24);
@@ -211,8 +204,7 @@ void printWEB() {
                     cfg.darkThreshold = dark.toInt();
                     cfg.lightThreshold = light.toInt();
                      writeCfg(cfg);
-					 sendData(RestSetting);
-                     updateHtml = true;
+                     updateHtml = RestSetting;
                     }
                 
             }
@@ -223,35 +215,28 @@ void printWEB() {
                 ,String(cfg.ssidPasswd)
                 ,String(cfg.lineToken)
                 ,String(cfg.darkThreshold)
-                ,String(cfg.lightThreshold));
-         updateHtml = true;
+                ,String(cfg.lightThreshold),
+                            cfg.pirMode,
+                            cfg.enableM2M);
+            updateHtml = RestNA;
         }
         else if(currentLine.endsWith("GET /device"))
         {
             html =devStatusPage(String(pirTimeout),String(getSensorValue()));
-			sendData(RestSensor);
-         	updateHtml = true;
+         	updateHtml = RestSensor;
         }        
-
-//        if (currentLine.endsWith("GET /H")) {
-//          setOutputPinLevel(ledPin, HIGH);        
-//        }
-//        if (currentLine.endsWith("GET /L")) {
-//          setOutputPinLevel(ledPin, LOW);       
-//        }
-
       }
-      //Serial.println("=====>" + currentLine);
     }
     // close the connection:
     client.stop();
     Serial.println("client disconnected");
+    sendData(updateHtml);
   }
 }
 
 void sendData(enum REST_CMD cmd)
 {  
-	if(digitalRead(13)==0 || cmd >= RestMax) // softAP mode 
+	if(digitalRead(13)==0 || cmd >= RestMax || cfg.enableM2M==0) // softAP mode 
 		return;
 
 	String postData;//aaa=2&bbb=3
@@ -280,16 +265,16 @@ void sendData(enum REST_CMD cmd)
         client.println();
         client.println(postData);
         client.println("");
-//      while(!client.available()){
-//        static int escape = 25;
-//        if(--escape<=0){
-//          escape = 25;
-//          client.stop();
-//          Serial.println("POST Timeout...");
-//          return;
-//        }
-//        delay(200);
-//        }
+      while(!client.available()){
+        static int escape = 25;
+        if(--escape<=0){
+          escape = 25;
+          client.stop();
+          Serial.println("POST Timeout...");
+          return;
+        }
+        delay(200);
+        }
 //      
 //        while (client.available()) {
 //          char c = client.read();

@@ -43,16 +43,16 @@ String headPage()
 }
 
 
-String sysInfoPage(String strMyAPIP_, String strMyIP, int chipID)
+String sysInfoPage(String strMyAPIP_, String strMyIP, uint32_t fwVer)
 {
     String msg = headPage();
 
         msg += "<h2>System Infomation</h2><br>";
         msg +=    "<h3><table border='1' style='font-size:20px'>";
         //msg +=    "<tr><td>Chip model </td><td>" + String(ESP.getChipModel()) + "</td></tr>";
-        msg +=    "<tr><td>Chip Id </td><td>" + String(chipID)+ "</td></tr>";
         msg +=    "<tr><td>IP </td><td>" + strMyAPIP_ + "</td></tr>";
         msg +=    "<tr><td>MAC </td><td>" + strMyIP+  "</td></tr>";
+        msg +=    "<tr><td>FW Ver</td><td>" + String(fwVer)+ "</td></tr>";
         msg +=    "</table></h3><hr>";
 
         return msg;
@@ -85,25 +85,60 @@ String powerModePage(int powerMode)
         return msg;
 }
 
-String settingPage(String serverIP,String serverPort, String ssid, String ssid_passwd, String lineToken_,String dark_threshold,String light_threshold)
+String settingPage(
+    String serverIP,
+    String serverPort, 
+    String ssid, 
+    String ssid_passwd, 
+    String lineToken_,
+    String dark_threshold,
+    String light_threshold,
+    int pirMode, 
+    int enableM2M)
 {
   String msg = headPage();
 
-          msg += "<h2>Light Setting</h2><br>";
+          msg += "<h2>Device Setting</h2><br>";
           msg +=    "<form action='settingX' method='post'>";
           msg +=    "<div  style='width:880px;height:50px;font-size:20px'><table border='1'>";
           msg +=    "<tr>Password : <input type='password' name='sysPasswd' value='' /></tr><br>";
            msg +=    "<tr>serverIP : <input type='text' name='serverIP' value="+serverIP+" /><input type='text' name='serverPort' value="+serverPort+" /></tr><br>";
           msg +=    "<tr>SSID : <input type='text' name='ssid' value="+ssid+" /></tr><br>";
           msg +=    "<tr>SSID PW : <input type='password' name='passwd' value="+ssid_passwd+" /></tr><br>";
-          msg +=    "<tr>token : <input type='text' name='token' value="+lineToken_+" /></tr><br>";
+          //msg +=    "<tr>token : <input type='text' name='token' value="+lineToken_+" /></tr><br>";
           msg +=    "<tr>Dark Threshold : <input type='text' name='dark' value="+ dark_threshold+" /></tr><br>";
           msg +=    "<tr>Light Threshold : <input type='text' name='light' value="+light_threshold+" /></tr><br>";
+
+          msg +=    "<tr>PIR Mode :";
+          if(pirMode == 0)
+            {
+                msg +="<label><input type='radio' name='pirMode' value=0 checked>Off</label>"
+                    "<label><input type='radio' name='pirMode' value=1>On</label></tr><br>";
+            }
+          else
+            {
+                msg +="<label><input type='radio' name='pirMode' value=0>Off</label>"
+                    "<label><input type='radio' name='pirMode' value=1 checked>On</label></tr><br>";
+            }
+
+          msg +=    "<tr>oneM2M :";
+          if(enableM2M == 0)
+            {
+                msg +="<label><input type='radio' name='enableM2M' value=0 checked>Disable</label>"
+                    "<label><input type='radio' name='enableM2M' value=1>Enable</label></tr><br>";
+            }
+          else
+            {
+                msg +="<label><input type='radio' name='enableM2M' value=0>Disable</label>"
+                    "<label><input type='radio' name='enableM2M' value=1 checked>Enable</label></tr><br>";
+            }
+
           msg +=    "<input type='submit'  style='width:88px;height:50px;font-size:20px' value='Save'/>";
           msg +=    "</table></div></form>";
            
         return msg;
 }
+
 
 String devStatusPage(String strPirState, String strAdcState)
 {
