@@ -12,5 +12,7 @@ void setLamp(bool bOnOff );
 bool lampState();
 void setSensorPin(int sensorPin);
 int getSensorValue();
+int getTriger();
+void setTriger(int times);
 
 #endif

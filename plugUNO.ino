@@ -2,43 +2,61 @@
 
 void dutyTask()
 {
-    if(cfg.powerMode == 2)
-    {
-      lightSensorVaule = getSensorValue();
-      lightSensorVaule= map(lightSensorVaule,0,1023,0,100);
-      int dark = cfg.darkThreshold; 
-      int light = cfg.lightThreshold;
+	lightSensorVaule = getSensorValue();
+	lightSensorVaule= map(lightSensorVaule,0,1023,0,100);
+	int dark = cfg.darkThreshold; 
+	int light = cfg.lightThreshold;
+	//Serial.println(String("lightSensorVaule === ") + String(lightSensorVaule));
 
-      if(pirTimeout > 0)
-      {
-        if(--pirTimeout<=0){
-          setOutputPinLevel(ledPin,LOW);
-          isPirTrigged = false;
-			sendData(RestPIR);
-        }
-      }
-      else{
-        if(cfg.pirMode==1 && checkBtnPressed())
-        {
-           pirTimeout = 10*10;
-           setOutputPinLevel(ledPin,HIGH);
-           isPirTrigged = true;
-		   sendData(RestPIR);
-        }
-      }
-      
-      if(!isPirTrigged){
-        if(lightSensorVaule > light && lampState()){
-          setLamp(false);
-		  sendData(RestSensor);
-        }
-        else if(lightSensorVaule < dark && !lampState()){
-          setLamp(true);
-		  sendData(RestSensor);
-        }
-      }
+    if(WiFi.status()!= WL_CONNECTED || cfg.powerMode == 2)
+    {
+		if(lightSensorVaule >= light){
+			if(lampState()){
+				Serial.println(String("lightSensorVaule === ") + String(lightSensorVaule));
+				setLamp(false);
+				sendData(RestSensor);
+			}
+		}
+		else if(lightSensorVaule < light)
+		{
+			if(cfg.pirMode==0)
+			{
+				if(!lampState() && lightSensorVaule < dark){
+					Serial.println(String("lightSensorVaule === ") + String(lightSensorVaule));
+					setLamp(true);
+					sendData(RestSensor);
+				}
+			}
+			else
+			{
+				if(pirTimeout > 0)
+				{
+					if(--pirTimeout<=0){
+						setOutputPinLevel(ledPin,LOW);
+						setTriger(0);
+						isPirTrigged = false;
+						sendData(RestPIR);
+					}
+				}
+				else{
+					if(checkBtnPressed())
+					{
+						pirTimeout = 10*10;
+						setOutputPinLevel(ledPin,HIGH);
+						isPirTrigged = true;
+						sendData(RestPIR);
+					}
+				}
+			}
+		}		
     }
-    
+	else{
+		if(lampState() != cfg.powerMode){
+			setLamp(cfg.powerMode);
+			sendData(RestSensor);
+		}
+	}
+	    
 }
 
 void printWEB() {
@@ -236,6 +254,14 @@ void printWEB() {
 
 void sendData(enum REST_CMD cmd)
 {  
+	if(cmd == RestMode)
+	{
+		if(cfg.powerMode<2)
+		{
+			setLamp((bool)cfg.powerMode);
+			pirTimeout = 0;
+		}
+	}
 	if(digitalRead(13)==0 || cmd >= RestMax || cfg.enableM2M==0) // softAP mode 
 		return;
 
@@ -317,10 +343,10 @@ void setup() {
 }
 
 void loop() {
-
+WiFi.status();
   printWEB();
   dutyTask();
+  //Serial.println(String("PIR === ") + String(getTriger()));
 
   delay(50);
 }
-

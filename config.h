@@ -13,7 +13,7 @@ WiFiServer server(80);            //server socket
 DevCfg cfg={0};
 
 int ledPin = 12;
-int btnKey = 8;
+int btnKey = 11;
 int sensorPin = A0;
 
 int lightSensorVaule = 0;

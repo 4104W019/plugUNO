@@ -13,7 +13,7 @@ bool checkBtnPressed()
   if(pressed && numberKeyPress>=1) {
     numberKeyPress=0;
     pressed=false;
-    isTrigged = true;;
+    isTrigged = true;
   }
   return isTrigged;
 }
@@ -21,6 +21,14 @@ void btnISR()
 {
   numberKeyPress += 1;
   pressed = true;
+}
+int getTriger()
+{
+	return numberKeyPress;
+}
+void setTriger(int times)
+{
+	numberKeyPress = times;
 }
 
 void setBtnPin(int OutputPin ){
@@ -47,9 +55,10 @@ void setOutputPinLevel(int OutputPin, int isHight )
 void setLamp(bool bOnOff){
   digitalWrite( pinOuts[0] , bOnOff);
   lampState_ = bOnOff;
-  
 }
 bool lampState(){
+  lampState_=digitalRead(pinOuts[0]);
+
   return lampState_;
 }
 
