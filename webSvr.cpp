@@ -5,7 +5,7 @@
  * void create_Json()
  * void RESTinit()
 =========================*/
-
+#if 0
 StaticJsonDocument<250> jsonDocument;
 char buffer[250];
 
@@ -23,7 +23,7 @@ void add_json_object(char *tag, float value, char *unit) {
   obj["value"] = value;
   obj["unit"] = unit; 
 }
-
+#endif
 
 
 

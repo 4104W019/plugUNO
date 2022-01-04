@@ -4,7 +4,7 @@
 #include "dutyTask.h"
 #include "webSvr.h"
 
-#define FWVER (202112251)
+#define FWVER (202201051)
 
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 

@@ -12,8 +12,8 @@ enum REST_CMD{
 	RestSetting,
 	RestSensor,
 	RestPIR,
-	RestMax,
-	RestNA
+	RestNA,
+	RestMax
 };
 
 void create_json(char *tag, float value, char *unit);
