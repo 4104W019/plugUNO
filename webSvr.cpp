@@ -147,7 +147,7 @@ String devStatusPage(String strPirState, String strAdcState)
         msg +=    "<h3><table border='1' style='font-size:20px'>";
         msg +=    "<tr><td>Sensor </td><td>Value</td></tr>";
         msg +=    "<tr><td>PIR </td><td>" + strPirState+ "</td></tr>";
-        msg +=    "<tr><td>ADC33 </td><td>" +strAdcState+ "</td></tr>";
+        msg +=    "<tr><td>LUMA </td><td>" +strAdcState+ "</td></tr>";
         msg +=    "</table></h3>";
 
         //msg += "<h2>Export Logs</h2><br>";

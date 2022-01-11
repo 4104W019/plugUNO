@@ -1,0 +1,1136 @@
+[
+    {
+        "id": "28c12c7d25bb016f",
+        "type": "inject",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 80,
+        "wires": [
+            [
+                "8a29b9b008b5c25f"
+            ]
+        ]
+    },
+    {
+        "id": "8a29b9b008b5c25f",
+        "type": "oM2M-ONE-Application",
+        "z": "6a9fac69f8d54b14",
+        "xN_CSE": "12e4aad49b209d74",
+        "NM": "cb03804c94b4d2c4",
+        "obixType": "",
+        "obixCategory": "",
+        "obixLocation": "",
+        "obiNMnnounce": false,
+        "x": 380,
+        "y": 80,
+        "wires": [
+            [
+                "322f6ddc34d5e011"
+            ]
+        ]
+    },
+    {
+        "id": "322f6ddc34d5e011",
+        "type": "http request",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 590,
+        "y": 80,
+        "wires": [
+            [
+                "9e0e8e33c9ce7ee7"
+            ]
+        ]
+    },
+    {
+        "id": "9e0e8e33c9ce7ee7",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8be76e74bb78fc4b",
+        "type": "inject",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "4c87a7db8faa9b37"
+            ]
+        ]
+    },
+    {
+        "id": "bdc3d47f6c1f4bf3",
+        "type": "http request",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 590,
+        "y": 160,
+        "wires": [
+            [
+                "dc179dc50d4087a5"
+            ]
+        ]
+    },
+    {
+        "id": "dc179dc50d4087a5",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4c87a7db8faa9b37",
+        "type": "oM2M-ONE-Data-Container",
+        "z": "6a9fac69f8d54b14",
+        "xN_CSE": "12e4aad49b209d74",
+        "NM": "cb03804c94b4d2c4",
+        "maxNrOfInstances": "10",
+        "obiNMnnounce": false,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "bdc3d47f6c1f4bf3"
+            ]
+        ]
+    },
+    {
+        "id": "b9cb4929cd250da9",
+        "type": "inject",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "bdcbf767f64e7b11"
+            ]
+        ]
+    },
+    {
+        "id": "c67a24e4c3125b69",
+        "type": "http request",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:8282/~/mn-cse/mn-name/DEVICE_STATUS_APP/DATA",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 600,
+        "y": 340,
+        "wires": [
+            [
+                "6c0855b75cfd9fda"
+            ]
+        ]
+    },
+    {
+        "id": "6c0855b75cfd9fda",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "bdcbf767f64e7b11",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Create_DeviceStatus_TestData",
+        "func": "msg.headers = {\n        \"X-M2M-Origin\": \"admin:admin\",\n        \"Content-type\" : \"application/xml;ty=4\"\n};\n\nvar m = new Date();\nvar dateString =\n    m.getUTCFullYear() + \"/\" +\n    (\"0\" + (m.getUTCMonth()+1)).slice(-2) + \"/\" +\n    (\"0\" + m.getUTCDate()).slice(-2) + \" \" +\n    (\"0\" + m.getUTCHours()).slice(-2) + \":\" +\n    (\"0\" + m.getUTCMinutes()).slice(-2) + \":\" +\n    (\"0\" + m.getUTCSeconds()).slice(-2);\n\n// Set Test Data\nvar PIR = 54;\nvar LUMA = 880;\n\nmsg.payload = \"\\\n<m2m:cin xmlns:m2m=\\\"http://www.onem2m.org/xml/protocols\\\">\\\n    <cnf>message</cnf>\\\n    <con>\\\n      &lt;obj&gt;\\\n        &lt;str name=&quot;appId&quot; val=&quot;DEVICE_STATUS_APP&quot;/&gt;\\\n        &lt;int name=&quot;TIMESTAMP&quot; val=&quot;\" + dateString + \"&quot;/&gt;\\\n        &lt;int name=&quot;pir&quot; val=&quot;\" + PIR + \"&quot;/&gt;\\\n        &lt;int name=&quot;luma&quot; val=&quot;\" + LUMA + \"&quot;/&gt;\\\n      &lt;/obj&gt;\\\n    </con>\\\n</m2m:cin>\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 340,
+        "wires": [
+            [
+                "c67a24e4c3125b69"
+            ]
+        ]
+    },
+    {
+        "id": "45ead40dea45ed0b",
+        "type": "inject",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "4edeac69ced542d2"
+            ]
+        ]
+    },
+    {
+        "id": "4edeac69ced542d2",
+        "type": "oM2M-ONE-Subscription",
+        "z": "6a9fac69f8d54b14",
+        "xN_CSE": "12e4aad49b209d74",
+        "NM": "cb03804c94b4d2c4",
+        "contactPath": "http://localhost:1880/notification_device_status",
+        "CNT": "DATA",
+        "filterType": "",
+        "filterCriteria": "content",
+        "x": 370,
+        "y": 240,
+        "wires": [
+            [
+                "b81f35dbff7cd05a"
+            ]
+        ]
+    },
+    {
+        "id": "b81f35dbff7cd05a",
+        "type": "http request",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 580,
+        "y": 240,
+        "wires": [
+            [
+                "fb3a9cbbd4e67a8c"
+            ]
+        ]
+    },
+    {
+        "id": "fb3a9cbbd4e67a8c",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3b4d84bbf0904b98",
+        "type": "http in",
+        "z": "6a9fac69f8d54b14",
+        "name": "Listen to HTTP POST Notifications of Device Status",
+        "url": "/notification_device_status",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 580,
+        "wires": [
+            [
+                "631d6b30d7c0984c",
+                "a05c842a38e00bc3"
+            ]
+        ]
+    },
+    {
+        "id": "a05c842a38e00bc3",
+        "type": "http response",
+        "z": "6a9fac69f8d54b14",
+        "name": "Notification Device Status Reponse",
+        "statusCode": "",
+        "headers": {},
+        "x": 410,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "631d6b30d7c0984c",
+        "type": "xml",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 500,
+        "y": 580,
+        "wires": [
+            [
+                "0816f1407039a5b8"
+            ]
+        ]
+    },
+    {
+        "id": "0816f1407039a5b8",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Extract_Data_from_XML",
+        "func": "var notification = msg.payload['m2m:sgn'];\n\nvar nev = notification['nev'][0];\n\nvar rep = nev['rep'][0];\n\nvar con = rep['con'][0];\n\nmsg.payload = con;\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 580,
+        "wires": [
+            [
+                "400851f663637e55",
+                "4aa4f099e11e4581"
+            ]
+        ]
+    },
+    {
+        "id": "400851f663637e55",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4aa4f099e11e4581",
+        "type": "file",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "filename": "~/data/file_database/device_status.xml",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 820,
+        "y": 680,
+        "wires": [
+            [
+                "e24f9a0283c72d5b"
+            ]
+        ]
+    },
+    {
+        "id": "15c7568863aab174",
+        "type": "http in",
+        "z": "6a9fac69f8d54b14",
+        "name": "GET Device Logs",
+        "url": "/device_logs",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 1200,
+        "wires": [
+            [
+                "3288a23cce3e6fc3"
+            ]
+        ]
+    },
+    {
+        "id": "3288a23cce3e6fc3",
+        "type": "file in",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "filename": "~/data/file_database/device_status.xml",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 420,
+        "y": 1200,
+        "wires": [
+            [
+                "81e3648e2ed12884"
+            ]
+        ]
+    },
+    {
+        "id": "81e3648e2ed12884",
+        "type": "xml",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 490,
+        "y": 1260,
+        "wires": [
+            [
+                "4b0e66fac99ce664"
+            ]
+        ]
+    },
+    {
+        "id": "b77e66f1ee1c79e9",
+        "type": "http in",
+        "z": "6a9fac69f8d54b14",
+        "name": "Post Device Status",
+        "url": "/device_status",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "e04ea791410ed421",
+                "34721014a08f5375"
+            ]
+        ]
+    },
+    {
+        "id": "e04ea791410ed421",
+        "type": "http response",
+        "z": "6a9fac69f8d54b14",
+        "name": "Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 340,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "34721014a08f5375",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Create_DeviceStatus_Data",
+        "func": "msg.headers = {\n        \"X-M2M-Origin\": \"admin:admin\",\n        \"Content-type\" : \"application/xml;ty=4\"\n};\n\n\nvar m = new Date();\nvar dateString =\n    m.getUTCFullYear() + \"/\" +\n    (\"0\" + (m.getUTCMonth()+1)).slice(-2) + \"/\" +\n    (\"0\" + m.getUTCDate()).slice(-2) + \" \" +\n    (\"0\" + m.getUTCHours()).slice(-2) + \":\" +\n    (\"0\" + m.getUTCMinutes()).slice(-2) + \":\" +\n    (\"0\" + m.getUTCSeconds()).slice(-2);\n\nmsg.payload = \"\\\n<m2m:cin xmlns:m2m=\\\"http://www.onem2m.org/xml/protocols\\\">\\\n    <cnf>message</cnf>\\\n    <con>\\\n      &lt;obj&gt;\\\n        &lt;str name=&quot;appId&quot; val=&quot;DEVICE_STATUS_APP&quot;/&gt;\\\n        &lt;int name=&quot;TIMESTAMP&quot; val=&quot;\" + dateString + \"&quot;/&gt;\\\n        &lt;int name=&quot;pir&quot; val=&quot;\" + msg.payload.pir + \"&quot;/&gt;\\\n        &lt;int name=&quot;luma&quot; val=&quot;\" + msg.payload.luma + \"&quot;/&gt;\\\n      &lt;/obj&gt;\\\n    </con>\\\n</m2m:cin>\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 420,
+        "wires": [
+            [
+                "ce39fa32130b21e5"
+            ]
+        ]
+    },
+    {
+        "id": "ce39fa32130b21e5",
+        "type": "http request",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:8282/~/mn-cse/mn-name/DEVICE_STATUS_APP/DATA",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 650,
+        "y": 420,
+        "wires": [
+            [
+                "6244c1c7a53920f9"
+            ]
+        ]
+    },
+    {
+        "id": "6244c1c7a53920f9",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e77f2fbf878aa2e5",
+        "type": "http request",
+        "z": "6a9fac69f8d54b14",
+        "name": "Post to /device_status",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1880/device_status",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 640,
+        "y": 1400,
+        "wires": [
+            [
+                "56e204e0ce94cd19"
+            ]
+        ]
+    },
+    {
+        "id": "f4ba0e3c4f78972c",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Parse Single Recode from XML to JSON",
+        "func": "// Check if null == payload\nif(msg.payload === \"null\")\n{\n    node.warn('the end of message seq');\n    msg.complete = true;\n    \n}else{\n    var data = JSON.parse(msg.payload);\n    var object1 = data.obj;\n    var integer1 = object1.int;\n\n    // Parse Data\n    var timestamp = integer1[0].$.val;\n    var pir = integer1[1].$.val;\n    var luma = integer1[2].$.val;\n\n\n    msg.payload = {\n                \"timestamp\": timestamp,\n                \"pir\": pir,\n                \"luma\": luma\n                };\n    \n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 1200,
+        "wires": [
+            [
+                "7748e5bbd91a8173"
+            ]
+        ]
+    },
+    {
+        "id": "4b0e66fac99ce664",
+        "type": "json",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 490,
+        "y": 1320,
+        "wires": [
+            [
+                "f4ba0e3c4f78972c"
+            ]
+        ]
+    },
+    {
+        "id": "65d97a2c5c612a08",
+        "type": "inject",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1400,
+        "wires": [
+            [
+                "0589c1e110a0fd90"
+            ]
+        ]
+    },
+    {
+        "id": "0589c1e110a0fd90",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Test_for_Post_Device_Status",
+        "func": "// set json header\nmsg.headers = {    \n    \"Content-Type\": \"application/json\"\n    };\n    \nmsg.payload = {\n    'pir': 55,\n    'luma': 88\n};\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1400,
+        "wires": [
+            [
+                "e77f2fbf878aa2e5"
+            ]
+        ]
+    },
+    {
+        "id": "56e204e0ce94cd19",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "7748e5bbd91a8173",
+        "type": "join",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 750,
+        "y": 1280,
+        "wires": [
+            [
+                "35f0de541ca767b8"
+            ]
+        ]
+    },
+    {
+        "id": "f59edfe6db6b7a20",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "35f0de541ca767b8",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Handle Array Messages",
+        "func": "var payload = msg.payload;\n\n// remove null object\ndata = [];\nfor(var raw_data in payload){\n    if(payload[raw_data] != \"null\"){\n        data.push(payload[raw_data]);\n    }\n}\n\n\nmsg.payload = { \"device_status\": (data) };\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 1280,
+        "wires": [
+            [
+                "f59edfe6db6b7a20",
+                "4b7d510f18e46ac4"
+            ]
+        ]
+    },
+    {
+        "id": "4b7d510f18e46ac4",
+        "type": "http response",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1150,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "e24f9a0283c72d5b",
+        "type": "file in",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "filename": "~/data/file_database/device_status.xml",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "b498c6032365b0d4"
+            ]
+        ]
+    },
+    {
+        "id": "9fb55cf28f3200d6",
+        "type": "join",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 870,
+        "y": 780,
+        "wires": [
+            [
+                "c99d4cf68d9a0c94"
+            ]
+        ]
+    },
+    {
+        "id": "b498c6032365b0d4",
+        "type": "xml",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 710,
+        "y": 780,
+        "wires": [
+            [
+                "9fb55cf28f3200d6"
+            ]
+        ]
+    },
+    {
+        "id": "c99d4cf68d9a0c94",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Parse Multiple XML record",
+        "func": "var data = msg.payload;\n\ndata_array = [];\nxml_array = [];\n\nfor (var index in data){\n    if(data[index] != null){\n        var _data = data[index].obj;\n        \n        // parse appid\n        var obj_name = _data.str[0].$.name;\n        var obj_val = _data.str[0].$.val;\n        \n        // parse obj\n        var timestamp_name = _data.int[0].$.name;\n        var timestamp_val = _data.int[0].$.val;\n        \n        var pir_name = _data.int[1].$.name;\n        var pir_val = _data.int[1].$.val;\n        \n        var luma_name = _data.int[2].$.name;\n        var luma_val = _data.int[2].$.val;\n        \n        \n        data_obj = {};\n        data_obj[obj_name] = obj_val;\n        data_obj[timestamp_name] = timestamp_val;\n        data_obj[pir_name] = pir_val;\n        data_obj[luma_name] = luma_val;\n        data_array.push(data_obj);\n        \n        var xml_string = '     <obj>      <str name=\"'+obj_name+'\" val=\"'+obj_val+'\"/>        <int name=\"'+timestamp_name+'\" val=\"'+timestamp_val+'\"/>        <int name=\"'+pir_name+'\" val=\"'+pir_val+'\"/>        <int name=\"'+luma_name+'\" val=\"'+luma_val+'\"/>      </obj>    ';\n        xml_array.push(xml_string);\n    }\n}\n\nnode.warn(xml_array);\n\nwhile( xml_array.length > 5){\n    //remove the first record\n     xml_array.shift();\n}\n\nnode.warn('After remove process');\nnode.warn(xml_array);\n\n// create final xml\nvar final_xml_string = \"\";\n\nfor( var xml_obj in xml_array){\n    final_xml_string += (xml_array[xml_obj] + \"\\n\");\n}\n\nnode.warn('Final XML String');\nnode.warn(final_xml_string);\n\nmsg.payload = final_xml_string;\n    \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 780,
+        "wires": [
+            [
+                "4f8736589cf0d869",
+                "7f61d87381c8855b"
+            ]
+        ]
+    },
+    {
+        "id": "4f8736589cf0d869",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "7f61d87381c8855b",
+        "type": "file",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "filename": "~/data/file_database/device_status.xml",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1390,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90eff83f651b9768",
+        "type": "http in",
+        "z": "6a9fac69f8d54b14",
+        "name": "GET Device Status",
+        "url": "/device_status",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 900,
+        "wires": [
+            [
+                "63c9b722308fa2fc"
+            ]
+        ]
+    },
+    {
+        "id": "63c9b722308fa2fc",
+        "type": "file in",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "filename": "~/data/file_database/device_status.xml",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": true,
+        "x": 420,
+        "y": 900,
+        "wires": [
+            [
+                "ec5281cfcd20f177"
+            ]
+        ]
+    },
+    {
+        "id": "ec5281cfcd20f177",
+        "type": "xml",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 310,
+        "y": 980,
+        "wires": [
+            [
+                "7f39ef2af3c413f2"
+            ]
+        ]
+    },
+    {
+        "id": "122667760edb2018",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Parse Single Recode from XML to JSON",
+        "func": "// Check if null == payload\nif(msg.payload === \"null\")\n{\n    node.warn('the end of message seq');\n    msg.complete = true;\n    \n}else{\n    var data = JSON.parse(msg.payload);\n    var object1 = data.obj;\n    var integer1 = object1.int;\n\n    // Parse Data\n    var timestamp = integer1[0].$.val;\n    var pir = integer1[1].$.val;\n    var luma = integer1[2].$.val;\n\n\n    msg.payload = {\n                \"timestamp\": timestamp,\n                \"pir\": pir,\n                \"luma\": luma\n                };\n    \n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 920,
+        "wires": [
+            [
+                "34463990b7277ad8"
+            ]
+        ]
+    },
+    {
+        "id": "7f39ef2af3c413f2",
+        "type": "json",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 470,
+        "y": 980,
+        "wires": [
+            [
+                "122667760edb2018"
+            ]
+        ]
+    },
+    {
+        "id": "34463990b7277ad8",
+        "type": "join",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 730,
+        "y": 1000,
+        "wires": [
+            [
+                "047094592de55c55"
+            ]
+        ]
+    },
+    {
+        "id": "f4f28ece44947cd4",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "047094592de55c55",
+        "type": "function",
+        "z": "6a9fac69f8d54b14",
+        "name": "Handle Array Messages",
+        "func": "var payload = msg.payload;\n\n// remove null object\ndata_array = [];\nfor(var raw_data in payload){\n    if(payload[raw_data] != \"null\"){\n        data_array.push(payload[raw_data]);\n    }\n}\n\nvar data = data_array.pop()\n\nmsg.payload = {\n                \"timestamp\": data.timestamp,\n                \"pir\": data.pir,\n                \"luma\": data.luma\n            };\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 1040,
+        "wires": [
+            [
+                "f4f28ece44947cd4",
+                "b5bd14e4fc42d7fa"
+            ]
+        ]
+    },
+    {
+        "id": "b5bd14e4fc42d7fa",
+        "type": "http response",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1220,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "bd8a19f6774bf9b9",
+        "type": "http request",
+        "z": "6a9fac69f8d54b14",
+        "name": "Delete oneM2M node",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.31.125:8282/~/mn-cse/cin-853228878",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 380,
+        "y": 1480,
+        "wires": [
+            [
+                "88aed16f5e0d61b8"
+            ]
+        ]
+    },
+    {
+        "id": "88b19e6dc0c221fa",
+        "type": "inject",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1480,
+        "wires": [
+            [
+                "bd8a19f6774bf9b9"
+            ]
+        ]
+    },
+    {
+        "id": "88aed16f5e0d61b8",
+        "type": "debug",
+        "z": "6a9fac69f8d54b14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "12e4aad49b209d74",
+        "type": "xN_CSE",
+        "sclId": "mn-cse",
+        "host": "localhost",
+        "port": "8282",
+        "baseUrl": "~"
+    },
+    {
+        "id": "cb03804c94b4d2c4",
+        "type": "NM",
+        "appId": "DEVICE_STATUS_APP",
+        "contactUrl": "localhost:1880"
+    }
+]

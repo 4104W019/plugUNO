@@ -70,5 +70,8 @@ void setSensorPin(int sensorPin)
 
 int getSensorValue()
 {
-  return analogRead(sensorPin_);
+  int luma = analogRead(sensorPin_);
+  luma = map(luma,0,1023,0,100);
+
+  return luma;
 }

@@ -3,49 +3,47 @@
 void dutyTask()
 {
 	lightSensorVaule = getSensorValue();
-	lightSensorVaule= map(lightSensorVaule,0,1023,0,100);
+
 	int dark = cfg.darkThreshold; 
 	int light = cfg.lightThreshold;
-	//Serial.println(String("lightSensorVaule === ") + String(lightSensorVaule));
 
     if(WiFi.status()!= WL_CONNECTED || cfg.powerMode == 2)
     {
 		if(lightSensorVaule >= light){
 			if(lampState()){
-				Serial.println(String("lightSensorVaule === ") + String(lightSensorVaule));
 				setLamp(false);
 				sendData(RestSensor);
+				pirTimeout = 0;
+				isPirTrigged = false;
 			}
 		}
-		else if(lightSensorVaule < light)
+		else if(lightSensorVaule <= dark)
 		{
-			if(cfg.pirMode==0)
+			if(!lampState() && lightSensorVaule < dark){
+				setLamp(true);
+				sendData(RestSensor);
+				pirTimeout = 0;
+				isPirTrigged = false;
+			}
+		}
+		else// if(lightSensorVaule < light)
+		{
+			if(pirTimeout > 0)
 			{
-				if(!lampState() && lightSensorVaule < dark){
-					Serial.println(String("lightSensorVaule === ") + String(lightSensorVaule));
-					setLamp(true);
-					sendData(RestSensor);
+				if(--pirTimeout<=0){
+					setOutputPinLevel(ledPin,LOW);
+					setTriger(0);
+					isPirTrigged = false;
+					sendData(RestPIR);
 				}
 			}
-			else
-			{
-				if(pirTimeout > 0)
+			else{
+				if(checkBtnPressed())
 				{
-					if(--pirTimeout<=0){
-						setOutputPinLevel(ledPin,LOW);
-						setTriger(0);
-						isPirTrigged = false;
-						sendData(RestPIR);
-					}
-				}
-				else{
-					if(checkBtnPressed())
-					{
-						pirTimeout = 10*10;
-						setOutputPinLevel(ledPin,HIGH);
-						isPirTrigged = true;
-						sendData(RestPIR);
-					}
+					pirTimeout = 10*10;
+					setOutputPinLevel(ledPin,HIGH);
+					isPirTrigged = true;
+					sendData(RestPIR);
 				}
 			}
 		}		
@@ -54,6 +52,8 @@ void dutyTask()
 		if(lampState() != cfg.powerMode){
 			setLamp(cfg.powerMode);
 			sendData(RestSensor);
+			pirTimeout = 0;
+			isPirTrigged = false;
 		}
 	}
 	    
@@ -63,7 +63,7 @@ void printWEB() {
   WiFiClient client= server.available();
 
   if (client) {                             // if you get a client,
-    Serial.println("new client");           // print a message out the serial port
+    Serial.println("============ new client ============");           // print a message out the serial port
 
     String html;
     enum REST_CMD updateHtml=RestMax;
@@ -130,15 +130,65 @@ void printWEB() {
             html =powerModePage(cfg.powerMode);
             updateHtml = RestMode;
         }
+		else if (currentLine.endsWith("POST /device_threshold"))
+        {
+            char *keyVal[4];
+			String dark="";
+            String light="";
+			String power="";
+		    String postForm  = client.readString();
+			int idx = postForm.indexOf("power_mode");
+			
+			postForm = postForm.substring(idx);
+			char *pch = postForm.c_str();
+			pch = strtok (pch,"&");
+			idx = 0;
+            keyVal[idx] = pch;
+			while (pch != NULL)
+            {
+                idx++;
+                pch = strtok (NULL, "&");
+                keyVal[idx] = pch;
+            }  
+			for(int i=0; i<idx;++i)
+		    {
+		     	if(strncmp(keyVal[i],"dark_thresh",11)==0){
+                    dark = String(keyVal[i]+11+1);
+					Serial.println(String(keyVal[i])+" : " + dark);
+			 		cfg.darkThreshold=dark.toInt();
+             	}
+			 	else if(strncmp(keyVal[i],"light_thresh",12)==0){
+                    light = String(keyVal[i]+12+1);
+					Serial.println(String(keyVal[i])+" : " + light);
+					cfg.lightThreshold=light.toInt();
+             	}
+			 	else if(strncmp(keyVal[i],"power_mode",10)==0){
+                    power = String(keyVal[i]+10+1);
+					
+					if(power=="on") 
+						cfg.powerMode=1;
+					else if (power=="off") 
+						cfg.powerMode=0;
+					else 
+						cfg.powerMode=2;
+					Serial.println(String(keyVal[i])+" : " + String(cfg.powerMode));
+			 	}
+		    }
+			html =String("");
+            updateHtml = RestMode;
+			client.println("HTTP/1.1 200 OK");
+            client.println("Content-type:text/html");
+            client.println();
+			break;
+        }
         else if (currentLine.endsWith("POST /settingX"))
         {
              char *keyVal[12];
               
               String postForm  = client.readString();
 
-              int idx = postForm.indexOf("sysPasswd");
+              int idx = postForm.indexOf("sysPasswd"); 
               postForm = postForm.substring(idx);
-              //Serial.println(F("final request 222333: "));Serial.println(postForm);
               char *pch = postForm.c_str();
               pch = strtok (pch,"&");
               idx = 0;
@@ -156,7 +206,7 @@ void printWEB() {
               String ssid="";
               String passwd="";
               String token="";
-
+				
               String dark="";
               String light="";
               
@@ -224,7 +274,12 @@ void printWEB() {
                  writeCfg(cfg);
                  updateHtml = RestSetting;
                 }
-            
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-type:text/html");
+            client.println();
+            client.print(html);
+            client.println();
+			break;
         }
         else if(currentLine.endsWith("GET /setting"))
         {
@@ -242,7 +297,7 @@ void printWEB() {
         {
             html =devStatusPage(String(pirTimeout),String(getSensorValue()));
          	updateHtml = RestSensor;
-        }        
+        }
       }
     }
     // close the connection:
@@ -257,7 +312,7 @@ void postClient(String postCmd,String postData)
 	WiFiClient client;
 
 	if (client.connect(cfg.serverIP, cfg.serverPort)) {
-		Serial.print("##########postClient####### connected to server :");Serial.println(postData);
+		//Serial.print("##########postClient####### connected to server :");Serial.println(postData);
 		// Make a HTTP request:
 		client.print("POST /");client.print(postCmd);client.println(" HTTP/1.1");
 		client.println("Content-Type: application/x-www-form-urlencoded");
@@ -288,7 +343,8 @@ void postClient(String postCmd,String postData)
 	}
 	else
 	{
-		Serial.println(client.connect(cfg.serverIP, cfg.serverPort));
+		cfg.enableM2M = 0;	
+		Serial.println("Connect to server fail... disable oneM2M");
 	}
 	
 	delay(1000);
@@ -307,7 +363,8 @@ void postDeviceIp()
 
 void postDeviceCommand()
 {
-	String postData = String("power_mode=")+String(cfg.powerMode)
+	String powerMode[3]={"off","on","auto"};
+	String postData = String("power_mode=")+String(powerMode[cfg.powerMode])
 	+String("&dark_thresh=")+String(cfg.darkThreshold)
 	+String("&light_thresh=")+String(cfg.lightThreshold);
 
@@ -317,9 +374,9 @@ void postDeviceCommand()
 
 void postDeviceStatus(int pir, int adc)
 {
-
-	String postData = String("pir=")+String(pir)
-	+String("&adc33=")+String(adc);
+	String postData = String("timestamp=")+String(millis()) 
+		+String("&pir=")+String(pir)
+	+String("&luma=")+String(adc);
 
 	postClient(String("device_status"),postData);
 }
@@ -339,10 +396,10 @@ void sendData(enum REST_CMD cmd)
 		return;
 
 	if(cmd == RestMode){
-		postDeviceCommand();
+		//postDeviceCommand();
 	}
 	else if(cmd == RestSetting){
-		postDeviceCommand();
+		//postDeviceCommand();
 	}
 	else if(cmd == RestSensor){
 		postDeviceStatus(isPirTrigged, getSensorValue());
@@ -371,11 +428,21 @@ void setup() {
   while (!Serial);
   
   enable_WiFi();
-  connect_WiFi(cfg.ssid,cfg.ssidPasswd);
+  
+ // connect_WiFi(cfg.ssid,cfg.ssidPasswd);
+ // connect_WiFi("Wenhao","11111111");  
+  connect_WiFi("WenhaoAP","t8940043");
+
 
   server.begin();
   printWifiStatus();
+  last_time = millis(); // ms
 
+}
+
+void refreshDeviceStatus(){
+	if(cfg.enableM2M)
+		postDeviceStatus(isPirTrigged, getSensorValue());
 }
 
 void loop() {
@@ -384,5 +451,14 @@ WiFi.status();
   dutyTask();
   //Serial.println(String("PIR === ") + String(getTriger()));
 
+  current_time = millis();
+  if((current_time - last_time) >= 10000)
+  {
+   // Serial.println(String("current_time - last_time ==") + String(current_time - last_time));
+ 	 last_time = current_time;
+	 
+  	refreshDeviceStatus();
+	
+  }
   delay(50);
 }

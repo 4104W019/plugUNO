@@ -1,0 +1,1072 @@
+[
+    {
+        "id": "b7709f676467ad56",
+        "type": "inject",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 80,
+        "wires": [
+            [
+                "81dfe0d2dfd4d965"
+            ]
+        ]
+    },
+    {
+        "id": "81dfe0d2dfd4d965",
+        "type": "oM2M-ONE-Application",
+        "z": "ce4f2f298caa7612",
+        "xN_CSE": "7744e0646ab474b6",
+        "NM": "52f6cac2ced8b949",
+        "obixType": "",
+        "obixCategory": "",
+        "obixLocation": "",
+        "obiNMnnounce": false,
+        "x": 410,
+        "y": 80,
+        "wires": [
+            [
+                "a2698a3572b7b128"
+            ]
+        ]
+    },
+    {
+        "id": "a2698a3572b7b128",
+        "type": "http request",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 620,
+        "y": 80,
+        "wires": [
+            [
+                "c03cc73f24f347a4"
+            ]
+        ]
+    },
+    {
+        "id": "c03cc73f24f347a4",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7014e1cb32f0a50a",
+        "type": "inject",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "2320ce9bbe8bb8a4"
+            ]
+        ]
+    },
+    {
+        "id": "299ccdf596e69fab",
+        "type": "http request",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 630,
+        "y": 140,
+        "wires": [
+            [
+                "8ab81ad3086ebeee"
+            ]
+        ]
+    },
+    {
+        "id": "8ab81ad3086ebeee",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2320ce9bbe8bb8a4",
+        "type": "oM2M-ONE-Data-Container",
+        "z": "ce4f2f298caa7612",
+        "xN_CSE": "7744e0646ab474b6",
+        "NM": "52f6cac2ced8b949",
+        "maxNrOfInstances": "100",
+        "obiNMnnounce": false,
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "299ccdf596e69fab"
+            ]
+        ]
+    },
+    {
+        "id": "6b4aead4d61b3c27",
+        "type": "inject",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 780,
+        "wires": [
+            [
+                "4e1e4facaed1ca95"
+            ]
+        ]
+    },
+    {
+        "id": "aa3588d36f65e079",
+        "type": "http request",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:8282/~/mn-cse/mn-name/DEVICE_COMMAND_APP/DATA",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 840,
+        "y": 780,
+        "wires": [
+            [
+                "13d94a2149e8df99"
+            ]
+        ]
+    },
+    {
+        "id": "13d94a2149e8df99",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "4e1e4facaed1ca95",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Create_DeviceCommand_TestData",
+        "func": "msg.headers = {\n        \"X-M2M-Origin\": \"admin:admin\",\n        \"Content-type\" : \"application/xml;ty=4\"\n};\n\n// Set Test Data\nvar POWER_MODE = 'on';\nvar DARK_THRESH = 10;\nvar LIGHT_THRESH = 80;\n\nmsg.payload = \"\\\n<m2m:cin xmlns:m2m=\\\"http://www.onem2m.org/xml/protocols\\\">\\\n    <cnf>message</cnf>\\\n    <con>\\\n      &lt;obj&gt;\\\n        &lt;str name=&quot;appId&quot; val=&quot;DEVICE_COMMAND_APP&quot;/&gt;\\\n        &lt;int name=&quot;power_mode&quot; val=&quot;\" + POWER_MODE + \"&quot;/&gt;\\\n        &lt;int name=&quot;dark_thresh&quot; val=&quot;\" + DARK_THRESH + \"&quot;/&gt;\\\n        &lt;int name=&quot;light_thresh&quot; val=&quot;\" + LIGHT_THRESH + \"&quot;/&gt;\\\n      &lt;/obj&gt;\\\n    </con>\\\n</m2m:cin>\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 780,
+        "wires": [
+            [
+                "aa3588d36f65e079"
+            ]
+        ]
+    },
+    {
+        "id": "8a342c0ee08103d2",
+        "type": "inject",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "8df42ead6ea26ddc"
+            ]
+        ]
+    },
+    {
+        "id": "8df42ead6ea26ddc",
+        "type": "oM2M-ONE-Subscription",
+        "z": "ce4f2f298caa7612",
+        "xN_CSE": "7744e0646ab474b6",
+        "NM": "52f6cac2ced8b949",
+        "contactPath": "http://localhost:1880/notification_device_command",
+        "CNT": "DATA",
+        "filterType": "",
+        "filterCriteria": "content",
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "38eae649e8402df2"
+            ]
+        ]
+    },
+    {
+        "id": "38eae649e8402df2",
+        "type": "http request",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 620,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8de3cc9d9a5ca45d",
+        "type": "http in",
+        "z": "ce4f2f298caa7612",
+        "name": "Listen to HTTP POST Notifications of Device Command",
+        "url": "/notification_device_command",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "ef476df20f86fa8c",
+                "0ca18687bdc7c4c5",
+                "225b6a096001029b"
+            ]
+        ]
+    },
+    {
+        "id": "0ca18687bdc7c4c5",
+        "type": "http response",
+        "z": "ce4f2f298caa7612",
+        "name": "Notification Device Command Reponse",
+        "statusCode": "",
+        "headers": {},
+        "x": 640,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ef476df20f86fa8c",
+        "type": "xml",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 590,
+        "y": 460,
+        "wires": [
+            [
+                "703ff774e0e292b1"
+            ]
+        ]
+    },
+    {
+        "id": "703ff774e0e292b1",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Extract_Data_from_XML",
+        "func": "var notification = msg.payload['m2m:sgn'];\n\nvar nev = notification['nev'][0];\n\nvar rep = nev['rep'][0];\n\nvar con = rep['con'][0];\n\nmsg.payload = con;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 460,
+        "wires": [
+            [
+                "d102679114b1fcf7",
+                "20e5067a16e8d3f5"
+            ]
+        ]
+    },
+    {
+        "id": "d102679114b1fcf7",
+        "type": "file",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "filename": "~/data/file_database/device_command.xml",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1130,
+        "y": 460,
+        "wires": [
+            [
+                "510554885cc5ad31"
+            ]
+        ]
+    },
+    {
+        "id": "368b0c5214f95106",
+        "type": "http in",
+        "z": "ce4f2f298caa7612",
+        "name": "GET Device Last Command",
+        "url": "/device_command",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 1040,
+        "wires": [
+            [
+                "f990395f52ea259b"
+            ]
+        ]
+    },
+    {
+        "id": "f990395f52ea259b",
+        "type": "file in",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "filename": "~/data/file_database/device_command.xml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 610,
+        "y": 1040,
+        "wires": [
+            [
+                "3dd25d48c826f406",
+                "83a39953575e69a2"
+            ]
+        ]
+    },
+    {
+        "id": "3dd25d48c826f406",
+        "type": "xml",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 710,
+        "y": 1120,
+        "wires": [
+            [
+                "cd2959c925a8e99d"
+            ]
+        ]
+    },
+    {
+        "id": "f9d9b3f6ebfe3724",
+        "type": "http response",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1230,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "034b09a366269485",
+        "type": "http in",
+        "z": "ce4f2f298caa7612",
+        "name": "Post Device Command",
+        "url": "/device_command",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 280,
+        "wires": [
+            [
+                "7d57c41db8f3c3b6",
+                "96690e2782e92965"
+            ]
+        ]
+    },
+    {
+        "id": "7d57c41db8f3c3b6",
+        "type": "http response",
+        "z": "ce4f2f298caa7612",
+        "name": "Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 380,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "96690e2782e92965",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Create_DeviceCommand_Data",
+        "func": "msg.headers = {\n        \"X-M2M-Origin\": \"admin:admin\",\n        \"Content-type\" : \"application/xml;ty=4\"\n};\n\n\nmsg.payload = \"\\\n<m2m:cin xmlns:m2m=\\\"http://www.onem2m.org/xml/protocols\\\">\\\n    <cnf>message</cnf>\\\n    <con>\\\n      &lt;obj&gt;\\\n        &lt;str name=&quot;appId&quot; val=&quot;DEVICE_COMMAND_APP&quot;/&gt;\\\n        &lt;int name=&quot;POWER_MODE&quot; val=&quot;\" + msg.payload.power_mode + \"&quot;/&gt;\\\n        &lt;int name=&quot;DARK_THRESH&quot; val=&quot;\" + msg.payload.dark_thresh + \"&quot;/&gt;\\\n        &lt;int name=&quot;LIGHT_THRESH&quot; val=&quot;\" + msg.payload.light_thresh + \"&quot;/&gt;\\\n      &lt;/obj&gt;\\\n    </con>\\\n</m2m:cin>\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "9de6f65c959c6d08"
+            ]
+        ]
+    },
+    {
+        "id": "9de6f65c959c6d08",
+        "type": "http request",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:8282/~/mn-cse/mn-name/DEVICE_COMMAND_APP/DATA",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 770,
+        "y": 280,
+        "wires": [
+            [
+                "354bd2f6ed91970e"
+            ]
+        ]
+    },
+    {
+        "id": "354bd2f6ed91970e",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "bbef905173e8d3a9",
+        "type": "http request",
+        "z": "ce4f2f298caa7612",
+        "name": "Post to /device_command",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1880/device_command",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 870,
+        "y": 860,
+        "wires": [
+            [
+                "91dc40600b43be50"
+            ]
+        ]
+    },
+    {
+        "id": "cf33fb8145461cbe",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Parse XML JSON",
+        "func": "var data = JSON.parse(msg.payload);\nvar object1 = data.obj;\nvar integer1 = object1.int;\n\n// Parse Data\nvar power_mode = integer1[0].$.val;\nvar dark_thresh = integer1[1].$.val;\nvar light_thresh = integer1[2].$.val;\n\n\nmsg.payload = {\n            \"power_mode\": power_mode,\n            \"dark_thresh\": dark_thresh,\n            \"light_thresh\": light_thresh\n            };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 1040,
+        "wires": [
+            [
+                "25d230a68384f7b7",
+                "f9d9b3f6ebfe3724"
+            ]
+        ]
+    },
+    {
+        "id": "25d230a68384f7b7",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "cd2959c925a8e99d",
+        "type": "json",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 850,
+        "y": 1120,
+        "wires": [
+            [
+                "cf33fb8145461cbe"
+            ]
+        ]
+    },
+    {
+        "id": "23ed623387498871",
+        "type": "inject",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 860,
+        "wires": [
+            [
+                "576fbecc01ad0c9f"
+            ]
+        ]
+    },
+    {
+        "id": "576fbecc01ad0c9f",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Test_for_Post_Device_Command",
+        "func": "// set json header\nmsg.headers = {    \n    \"Content-Type\": \"application/json\"\n    };\n    \nmsg.payload = {\n    'power_mode': 'off',\n    'dark_thresh': 15,\n    'light_thresh': 100,\n};\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 860,
+        "wires": [
+            [
+                "bbef905173e8d3a9"
+            ]
+        ]
+    },
+    {
+        "id": "91dc40600b43be50",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "6de0daf20242dec1",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Parse XML JSON",
+        "func": "var data = JSON.parse(msg.payload);\n\n\nvar object1 = data.obj;\nvar integer1 = object1.int;\n\n// Parse Data\nvar power_mode = integer1[0].$.val;\nvar dark_thresh = integer1[1].$.val;\nvar light_thresh = integer1[2].$.val;\n\n\nmsg.payload = {\n            \"power_mode\": power_mode,\n            \"dark_thresh\": dark_thresh,\n            \"light_thresh\": light_thresh\n            };\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 640,
+        "wires": [
+            [
+                "3eab430be6182648",
+                "4e92aed272c41872"
+            ]
+        ]
+    },
+    {
+        "id": "3eab430be6182648",
+        "type": "file",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "filename": "~/data/file_database/forward_device_command.json",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1160,
+        "y": 520,
+        "wires": [
+            [
+                "9b8c09155234a3ce"
+            ]
+        ]
+    },
+    {
+        "id": "20e5067a16e8d3f5",
+        "type": "xml",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 810,
+        "y": 520,
+        "wires": [
+            [
+                "268a4b96b76c5324"
+            ]
+        ]
+    },
+    {
+        "id": "268a4b96b76c5324",
+        "type": "json",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 810,
+        "y": 580,
+        "wires": [
+            [
+                "6de0daf20242dec1"
+            ]
+        ]
+    },
+    {
+        "id": "258dbc672779245a",
+        "type": "http in",
+        "z": "ce4f2f298caa7612",
+        "name": "GET Forward Device Command",
+        "url": "/forward_device_command",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 1240,
+        "wires": [
+            [
+                "74f505172895ac5f"
+            ]
+        ]
+    },
+    {
+        "id": "74f505172895ac5f",
+        "type": "file in",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "filename": "~/data/file_database/forward_device_command.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 640,
+        "y": 1240,
+        "wires": [
+            [
+                "2b59ee3274699118"
+            ]
+        ]
+    },
+    {
+        "id": "504173766cb1925f",
+        "type": "http response",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1250,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "2b59ee3274699118",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Parse XML JSON",
+        "func": "var data = JSON.parse(msg.payload);\n\nmsg.payload = {\n            \"power_mode\": data.power_mode,\n            \"dark_thresh\": data.dark_thresh,\n            \"light_thresh\": data.light_thresh\n            };\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 1240,
+        "wires": [
+            [
+                "0cac529fe19ea27e",
+                "504173766cb1925f"
+            ]
+        ]
+    },
+    {
+        "id": "0cac529fe19ea27e",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "225b6a096001029b",
+        "type": "file in",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "filename": "~/data/file_database/device_ip.xml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "addd71de8e2ecad9"
+            ]
+        ]
+    },
+    {
+        "id": "addd71de8e2ecad9",
+        "type": "xml",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 610,
+        "y": 640,
+        "wires": [
+            [
+                "c89bf9c23d417936"
+            ]
+        ]
+    },
+    {
+        "id": "d7a9fe47bb47931f",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Parse XML JSON",
+        "func": "var data = JSON.parse(msg.payload);\nvar object1 = data.obj;\nvar integer1 = object1.int;\n\nvar tres = integer1[0];\nvar tres_$ = tres.$;\nvar device_ip = tres_$.val;\n\n\nmsg.payload = {\n            \"device_ip\":device_ip\n            };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 700,
+        "wires": [
+            [
+                "4e92aed272c41872"
+            ]
+        ]
+    },
+    {
+        "id": "c89bf9c23d417936",
+        "type": "json",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 610,
+        "y": 700,
+        "wires": [
+            [
+                "d7a9fe47bb47931f"
+            ]
+        ]
+    },
+    {
+        "id": "4e92aed272c41872",
+        "type": "join",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "mode": "custom",
+        "build": "merged",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1070,
+        "y": 640,
+        "wires": [
+            [
+                "882c292942fa3367"
+            ]
+        ]
+    },
+    {
+        "id": "882c292942fa3367",
+        "type": "function",
+        "z": "ce4f2f298caa7612",
+        "name": "Forward Command to Arduino Device",
+        "func": "data = msg.payload;\n\nvar power_mode = data.power_mode;\nvar dark_thresh = data.dark_thresh;\nvar light_thresh = data.light_thresh;\nvar device_ip = data.device_ip;\n\n// debug use 127.0.0.1\n//device_ip = \"127.0.0.1:1880\";\n \n// http_request_url = \"http://\" + device_ip + \"/\" + power_mode;\n\n// node.warn(\"Send Arduino Device http request: \" + http_request_url);\n\n// msg.url = http_request_url;\nmsg.method=\"post\";\nhttp_request_url = \"http://\" + device_ip + \"/device_threshold\";\nmsg.url = http_request_url;\nmsg.payload=\"power_mode=\"+power_mode\n    +\"&dark_thresh=\"+dark_thresh\n    +\"&light_thresh=\"+light_thresh;\n    \nnode.warn(\"Send Arduino Device http request: \" + http_request_url);\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1310,
+        "y": 640,
+        "wires": [
+            [
+                "69d5c9a68a45aa6f"
+            ]
+        ]
+    },
+    {
+        "id": "69d5c9a68a45aa6f",
+        "type": "http request",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 1240,
+        "y": 700,
+        "wires": [
+            [
+                "bbb87ded999d40cc"
+            ]
+        ]
+    },
+    {
+        "id": "bbb87ded999d40cc",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1410,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "83a39953575e69a2",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "510554885cc5ad31",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1410,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "9b8c09155234a3ce",
+        "type": "debug",
+        "z": "ce4f2f298caa7612",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7744e0646ab474b6",
+        "type": "xN_CSE",
+        "sclId": "mn-cse",
+        "host": "localhost",
+        "port": "8282",
+        "baseUrl": "~"
+    },
+    {
+        "id": "52f6cac2ced8b949",
+        "type": "NM",
+        "appId": "DEVICE_COMMAND_APP",
+        "contactUrl": "localhost:1880"
+    }
+]
